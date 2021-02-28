@@ -1,7 +1,7 @@
 (ns ffclj.core
   (:require [ffclj.exec :refer [ffexec!]]
-            [clojure.core.async :as async]
-            [cheshire.core :as json]))
+            [cheshire.core :as json]
+            [ffclj.task :as task]))
 
 (defn- parse-stream
   ""
@@ -20,5 +20,4 @@
   ([binary args]
    (with-open [task (->> (concat [:print_format "json"] args)
                          (ffexec! binary nil))]
-     (parse-stream (.stdout task)))))
-
+     (parse-stream (task/stdout task)))))

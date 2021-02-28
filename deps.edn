@@ -2,8 +2,28 @@
  :deps {org.clojure/clojure {:mvn/version "1.10.1"}
         cheshire/cheshire {:mvn/version "5.10.0"}
         org.clojure/core.async {:mvn/version "1.3.610"}}
+
+
  :aliases
- {:test {:extra-paths ["test"]
+ {
+
+  ;  clj -X:install :artifact '"ffclj-0.1.1.jar"'
+  :install {:replace-deps {slipset/deps-deploy {:mvn/version "RELEASE"}}
+            :exec-fn deps-deploy.deps-deploy/deploy
+            :exec-args {:installer :local}}
+
+  :deploy {:extra-deps {slipset/deps-deploy {:mvn/version "RELEASE"}}
+          :exec-fn deps-deploy.deps-deploy/deploy
+          :exec-args {:installer :remote
+                       :sign-releases? false
+                      :artifact "target/ffclj-0.1.1.jar"}}
+  ; clojure -X:depstar jar :jar target/ffclj-0.1.1.jar
+  :depstar {:replace-deps
+                 {seancorfield/depstar {:mvn/version "2.0.188"}}
+               :ns-default hf.depstar
+               :exec-args {}}
+
+  :test {:extra-paths ["test"]
          :extra-deps {org.clojure/test.check {:mvn/version "1.0.0"}}}
   :runner
   {:extra-deps {com.cognitect/test-runner
