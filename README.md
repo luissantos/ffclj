@@ -79,7 +79,7 @@ FFCLJ is a simple ffmpeg clojure wrapper. It aims to provide a simple wrapper ar
 (require '[ffclj.core :refer [ffmpeg! ffprobe!]]
          '[ffclj.task :as task])
 
-(let [result (ffprobe! "/usr/bin/ffprobe" [:show_format :show_streams
+(let [result (ffprobe! [:show_format :show_streams
                        "http://ftp.nluug.nl/pub/graphics/blender/demo/movies/ToS/ToS-4k-1920.mov"])
         s (group-by (comp keyword :codec_type) (:streams result))
         codecs [(:codec_name (first (:video s) )) (:codec_name (first (:audio s)) )]]
