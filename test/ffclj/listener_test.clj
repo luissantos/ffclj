@@ -1,4 +1,4 @@
-(ns ffmpeg.listener-test
+(ns ffclj.listener-test
   (:require [clojure.test :refer :all]
             [clojure.core.async :as async]
             [ffclj.listener :refer :all])

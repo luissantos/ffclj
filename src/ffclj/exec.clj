@@ -2,7 +2,7 @@
   (:require [ffclj.listener :refer [listen append-progress-listener]]
             [ffclj.task :refer [->FFmpegTask]]))
 
-(defn- convert-args
+(defn convert-args
   [coll]
   (->> coll
        (seq)
@@ -10,7 +10,7 @@
        (map #(cond
                (keyword? %) (str "-" (name %))
                (coll? %) (convert-args %)
-               :else %))
+               :else (str %) ))
        (flatten)))
 
 (defn- exec

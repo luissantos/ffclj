@@ -74,7 +74,7 @@ FFCLJ is a simple ffmpeg clojure wrapper. It aims to provide a simple wrapper ar
 
 (require '[babashka.deps :as deps])
 
-(deps/add-deps '{:deps {ffclj/ffclj {:mvn/version "0.1.1" }}})
+(deps/add-deps '{:deps {ffclj/ffclj {:mvn/version "0.1.2" }}})
 
 (require '[ffclj.core :refer [ffmpeg! ffprobe!]]
          '[ffclj.task :as task])
